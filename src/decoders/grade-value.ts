@@ -18,10 +18,14 @@ export const decodeGradeValue = (value: string): GradeValue => {
         kind: GradeKind.Absent,
         points: 0
       };
-    case "NE": // Unknown, so putting not graded
-    case "EA": // "Non évalué"
+    case "NE": // "Non évalué"
       return {
         kind: GradeKind.NotGraded,
+        points: 0
+      };
+    case "EA": // En attente
+      return {
+        kind: GradeKind.Waiting,
         points: 0
       };
     default:
