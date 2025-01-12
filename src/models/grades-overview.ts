@@ -9,6 +9,7 @@ export type SubjectOverview = {
     childSubjectId: string;
     isChildSubject: boolean;
     color: string;
+    coefficient: number;
     classAverage: GradeValue;
     maxAverage: GradeValue;
     minAverage: GradeValue;
@@ -16,6 +17,7 @@ export type SubjectOverview = {
     outOf: GradeValue;
   }[];
 };
+
 
 export type GradesOverview = {
   [key: string]: SubjectOverview;
