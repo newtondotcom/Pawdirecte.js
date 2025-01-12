@@ -25,6 +25,7 @@ export const buildOverview = (data: any): GradesOverview => {
           isChildSubject: subject.sousMatiere,
           // TODO
           color: "string",
+          coefficient: Number(subject.coef),
           classAverage: decodeGradeValue(
             subject.moyenneClasse?.replace(",", ".")
           ),
