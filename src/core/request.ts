@@ -13,7 +13,7 @@ export class Request {
 
   public constructor(path: string) {
     this.url = new URL(`https://api.ecoledirecte.com/v3${path}`);
-    this.headers = { "User-Agent": "EDMOBILE" };
+    this.headers = { "User-Agent": "EDMOBILE v7.0.0" };
   }
 
   public setToken(token: string): Request {
@@ -22,7 +22,7 @@ export class Request {
   }
 
   public addVersionURL(): Request {
-    this.url.searchParams.set("v", "6.17.0");
+    this.url.searchParams.set("v", "7.0.0");
     return this;
   }
 
