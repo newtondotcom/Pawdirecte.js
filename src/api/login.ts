@@ -37,7 +37,6 @@ const init = async (
   const request = new Request("/login.awp").addVersionURL().setFormData(body);
   request.headers["X-GTK"] = gtk;
   request.headers["Cookie"] = `GTK=${gtk}`;
-  console.log(gtk);
 
   if (token) request.setToken(token);
   return request;
