@@ -11,12 +11,33 @@ import {
 import { Request } from "~/core/request";
 import { decodeAccount } from "~/decoders/account";
 import { encodeDoubleAuth } from "~/encoders/double-auth";
+import { getCookiesFromResponse } from "@literate.ink/utilities";
 
-const init = (
+const init = async (
   body: Record<string, unknown>,
   token: string | null = null
-): Request => {
+): Promise<Request> => {
+  let gtk: string | undefined;
+
+  {
+    const request = new Request("/login.awp?gtk=1").addVersionURL();
+    const response = await request.sendRaw();
+    const cookies = getCookiesFromResponse(response);
+
+    for (const cookie of cookies) {
+      const [key, value] = cookie.split("=");
+      if (key === "GTK") gtk = value;
+    }
+
+    if (!gtk) {
+      throw new Error("GTK cookie not found in response");
+    }
+  }
+
   const request = new Request("/login.awp").addVersionURL().setFormData(body);
+  request.headers["X-GTK"] = gtk;
+  request.headers["Cookie"] = `GTK=${gtk}`;
+  console.log(gtk);
 
   if (token) request.setToken(token);
   return request;
@@ -27,7 +48,7 @@ export const login = async (
   password: string
 ): Promise<Array<Account>> => {
   const encoded_double_auth = encodeDoubleAuth(session.double_auth);
-  const request = init(
+  const request = await init(
     {
       ...encoded_double_auth,
       fa: encoded_double_auth && [encoded_double_auth],
@@ -50,7 +71,7 @@ export const refresh = async (
 ): Promise<Array<Account>> => {
   if (!session.token) throw new SessionTokenRequired();
 
-  const request = init(
+  const request = await init(
     {
       fa: [encodeDoubleAuth(session.double_auth)],
 
