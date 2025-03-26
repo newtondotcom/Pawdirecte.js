@@ -18,11 +18,12 @@ const init = async (
   token: string | null = null
 ): Promise<Request> => {
   let gtk: string | undefined;
+  let cookies: string[];
 
   {
     const request = new Request("/login.awp?gtk=1").addVersionURL();
     const response = await request.sendRaw();
-    const cookies = getCookiesFromResponse(response);
+    cookies = getCookiesFromResponse(response);
 
     for (const cookie of cookies) {
       const [key, value] = cookie.split("=");
@@ -36,7 +37,7 @@ const init = async (
 
   const request = new Request("/login.awp").addVersionURL().setFormData(body);
   request.headers["X-GTK"] = gtk;
-  request.headers["Cookie"] = `GTK=${gtk}`;
+  request.headers["Cookie"] = cookies.join("; ");
 
   if (token) request.setToken(token);
   return request;
