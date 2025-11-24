@@ -5,12 +5,12 @@ message: >-
   metadata from this file.
 type: software
 authors:
-  - name: LiterateInk
-    website: "https://literate.ink"
-    email: contact@literate.ink
-repository-code: 'https://github.com/LiterateInk/Pawdirecte'
-url: 'https://docs.literate.ink/pawdirecte'
-repository-artifact: 'https://www.npmjs.com/package/pawdirecte'
+  - name: newtondotcom
+    website: "https://github.com/newtondotcom"
+    email: contact@newtondot.com
+repository-code: 'https://github.com/newtondotcom/Pawdirecte.js'
+url: 'https://github.com/newtondotcom/Pawdirecte.js'
+repository-artifact: 'https://www.npmjs.com/package/pawdirecte-teacher'
 abstract: >-
   A purrfect API wrapper for EcoleDirecte.
 keywords:

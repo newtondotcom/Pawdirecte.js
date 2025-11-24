@@ -8,22 +8,22 @@ Use your favorite package manager to install this library from NPM.
 
 ```bash
 # pnpm
-pnpm add pawdirecte
+pnpm add pawdirecte-teacher
 
 # Yarn
-yarn add pawdirecte
+yarn add pawdirecte-teacher
 
 # npm
-npm add pawdirecte
+npm add pawdirecte-teacher
 
 # Bun
-bun add pawdirecte
+bun add pawdirecte-teacher
 ```
 
 ## Documentation
 
 You can find documentation with guides at [docs.literate.ink/pawdirecte](https://docs.literate.ink/pawdirecte).
 
-If it's not enough you can also take a look at the [`examples`](https://github.com/LiterateInk/Pawdirecte/tree/js/examples) folder in the GitHub repository for inspiration.
+If it's not enough you can also take a look at the [`examples`](https://github.com/newtondotcom/Pawdirecte.js/tree/main/examples) folder in the GitHub repository for inspiration.
 
-If none of those are helpful, you can always [open an issue](https://github.com/LiterateInk/Pawdirecte/issues) to ask for help or join the [LiterateInk Discord server](https://literate.ink/discord).
+If none of those are helpful, you can always [open an issue](https://github.com/newtondotcom/Pawdirecte.js/issues) to ask for help.
