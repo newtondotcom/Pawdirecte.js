@@ -1,8 +1,8 @@
 {
-  "name": "pawdirecte",
-  "version": "1.9.2",
-  "description": "A purrfect API wrapper for EcoleDirecte.",
-  "repository": "https://github.com/LiterateInk/Pawdirecte",
+  "name": "pawdirecte-teacher",
+  "version": "1.9.3",
+  "description": "A purrfect API wrapper for EcoleDirecte for teachers.",
+  "repository": "https://github.com/newtondotcom/Pawdirecte.js",
   "sideEffects": false,
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -29,10 +29,10 @@
     "wrapper",
     "api"
   ],
-  "author": "LiterateInk <contact@literate.ink> (https://literate.ink)",
-  "homepage": "https://docs.literate.ink/pawdirecte",
+  "author": "Newton (https://github.com/newtondotcom)",
+  "homepage": "https://github.com/newtondotcom/Pawdirecte.js",
   "bugs": {
-    "url": "https://github.com/LiterateInk/Pawdirecte/issues"
+    "url": "https://github.com/newtondotcom/Pawdirecte.js/issues"
   },
   "license": "GPL-3.0-or-later",
   "engines": {
