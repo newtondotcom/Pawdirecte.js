@@ -50,3 +50,22 @@ export type TeacherClassCouncil = Readonly<{
   classAppreciation: TeacherClassCouncilAppreciation;
 }>;
 
+export type TeacherClassCouncilStudentInput = TeacherClassCouncilStudent & {
+  isFirst?: boolean;
+  isLast?: boolean;
+};
+
+export type TeacherClassCouncilStudentUpdatePayload = Readonly<{
+  student: TeacherClassCouncilStudentInput;
+  classAppreciation?: TeacherClassCouncilAppreciation | null;
+}>;
+
+export type TeacherClassCouncilStudentUpdateResult = Readonly<{
+  appreciationPrincipalTeacher?: TeacherClassCouncilAppreciation;
+  appreciationHeadTeacher?: TeacherClassCouncilAppreciation;
+  appreciationVicePrincipal?: TeacherClassCouncilAppreciation;
+  appreciationNationalEducation?: TeacherClassCouncilAppreciation;
+  councilMention?: TeacherClassCouncilAppreciation;
+  classAppreciation?: TeacherClassCouncilAppreciation;
+}>;
+

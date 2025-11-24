@@ -7,7 +7,9 @@ import type {
   TeacherClassCouncilStudent
 } from "~/models";
 
-const decodeAppreciation = (input: any): TeacherClassCouncilAppreciation => {
+export const decodeTeacherClassCouncilAppreciation = (
+  input: any
+): TeacherClassCouncilAppreciation => {
   const date =
     typeof input?.date === "string" && input.date.trim() !== ""
       ? new Date(input.date)
@@ -31,11 +33,19 @@ const decodeStudent = (student: any): TeacherClassCouncilStudent => ({
   arrivalOrder: student.ordreArrivee ?? "",
   photoURL: student.photo ?? "",
   tags: Array.isArray(student.dispositifs) ? student.dispositifs : [],
-  appreciationPrincipalTeacher: decodeAppreciation(student.appreciationPP),
-  appreciationHeadTeacher: decodeAppreciation(student.appreciationCE),
-  appreciationVicePrincipal: decodeAppreciation(student.appreciationVS),
-  appreciationNationalEducation: decodeAppreciation(student.appreciationCN),
-  councilMention: decodeAppreciation(student.mentionDuConseil)
+  appreciationPrincipalTeacher: decodeTeacherClassCouncilAppreciation(
+    student.appreciationPP
+  ),
+  appreciationHeadTeacher: decodeTeacherClassCouncilAppreciation(
+    student.appreciationCE
+  ),
+  appreciationVicePrincipal: decodeTeacherClassCouncilAppreciation(
+    student.appreciationVS
+  ),
+  appreciationNationalEducation: decodeTeacherClassCouncilAppreciation(
+    student.appreciationCN
+  ),
+  councilMention: decodeTeacherClassCouncilAppreciation(student.mentionDuConseil)
 });
 
 const decodeMention = (mention: any): TeacherClassCouncilMention => ({
@@ -68,7 +78,7 @@ export const decodeTeacherClassCouncil = (data: any): TeacherClassCouncil => {
   return {
     students: Array.isArray(data?.eleves) ? data.eleves.map(decodeStudent) : [],
     settings: decodeSettings(data?.parametrage ?? {}),
-    classAppreciation: decodeAppreciation(data?.appreciationGenerale ?? {})
+    classAppreciation: decodeTeacherClassCouncilAppreciation(data?.appreciationGenerale ?? {})
   };
 };
 
