@@ -6,14 +6,12 @@ To start developing, clone the repository and install the dependencies.
 
 ```bash
 # Clone the repository.
-git clone https://github.com/LiterateInk/Pawdirecte && cd Pawdirecte
-# Switch to the JS/TS implementation branch.
-git checkout js
+git clone https://github.com/newtondotcom/Pawdirecte.js/tree/main && cd Pawdirecte.js
 # Install dependencies.
-pnpm install
+bun install
 ```
 
-> In case you don't have `pnpm` installed, you can install it by running `npm install --global pnpm`.
+> In case you don't have `bun` installed, you can install it by running `curl -fsSL https://bun.com/install | bash`.
 
 ## Release
 
