@@ -20,4 +20,6 @@ jobs:
       - name: Publish package
         run: |
           bun install
-          bun pm pack && bunx npm publish ./pawdirecte-teacher-2.0.0.tgz --provenance
+          FILE=$(bun pm pack | sed -n 's/.*\(pawdirecte-.*\.tgz\).*/\1/p')
+          echo "Package file: $FILE"
+          bunx npm publish "$FILE" --provenance
