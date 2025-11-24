@@ -1,7 +1,7 @@
 import { Request } from "~/core/request";
 import { decodeGrade } from "~/decoders/grade";
 import { buildOverview } from "~/decoders/grades-overview";
-import { decodePeriod } from "~/decoders/period";
+import { decodePeriodWithSubjects } from "~/decoders/period";
 import {
   decodeTeacherLSUN,
   decodeTeacherGradesSettings
@@ -34,7 +34,7 @@ export const teacherGrades = async (
     studentId,
     statsCode: data.foStat ?? "",
     periods: Array.isArray(data.periodes)
-      ? data.periodes.map(decodePeriod)
+      ? data.periodes.map(decodePeriodWithSubjects)
       : [],
     grades: Array.isArray(data.notes) ? data.notes.map(decodeGrade) : [],
     overview: buildOverview(data),

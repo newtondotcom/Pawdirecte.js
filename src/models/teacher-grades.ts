@@ -1,6 +1,6 @@
 import type { Grade } from "~/models/grade";
 import type { GradesOverview } from "~/models/grades-overview";
-import type { Period } from "~/models/period";
+import type { PeriodWithSubjects } from "~/models/period";
 
 export type TeacherLSUNEntry = Readonly<{
   subjectCode: string;
@@ -45,7 +45,7 @@ export type TeacherGradesSettings = Readonly<{
 export type TeacherGradesResponse = Readonly<{
   studentId: number;
   statsCode: string;
-  periods: Period[];
+  periods: PeriodWithSubjects[];
   grades: Grade[];
   overview: GradesOverview;
   lsun: TeacherLSUNMap;
