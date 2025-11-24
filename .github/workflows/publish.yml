@@ -22,6 +22,7 @@ jobs:
       - name: Publish package
         run: |
           bun install
+          bun i -g npm@latest
           FILE=$(bun pm pack | sed -n 's/.*\(pawdirecte-.*\.tgz\).*/\1/p')
           echo "Package file: $FILE"
           bunx npm publish "$FILE" --provenance
