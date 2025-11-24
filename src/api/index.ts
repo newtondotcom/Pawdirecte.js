@@ -14,6 +14,7 @@ export * from "./student/visios";
 export * from "./student/workspace";
 export * from "./teacher/grades";
 export * from "./teacher/student-info";
+export * from "./teacher/class-council";
 
 export * from "./double-auth";
 export * from "./login";
