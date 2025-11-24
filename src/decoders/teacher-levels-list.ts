@@ -53,42 +53,60 @@ const decodePeriod = (period: any): TeacherLevelsListPeriod => ({
     : []
 });
 
-const decodeClass = (classe: any): TeacherLevelsListClass => ({
-  id: Number(classe.id ?? 0),
-  label: classe.libelle ?? "",
-  code: classe.code ?? "",
-  groupId: Number(classe.idGroupe ?? 0),
-  isPrincipalTeacher: Boolean(classe.isPP),
-  graded: Boolean(classe.estNote),
-  lsunPositioning: Number(classe.positionnementLSU ?? 0),
-  degree: Number(classe.degre ?? 0),
-  cycleId: Number(classe.idCycleEtab ?? 0),
-  periodCount: Number(classe.pcpNbPeriode ?? 0),
-  showAnnualAverage: Boolean(classe.pcpMoyAnnuelle),
-  showYearAverage: Boolean(classe.pcpMoyGenAnnee),
-  showPeriodAverage: Boolean(classe.pcpMoyPeriode),
-  showSubjectAverage: Boolean(classe.pcpMoyMatiere),
-  principalTeachers: Array.isArray(classe.tabPP)
-    ? classe.tabPP.map((teacher: any) => ({
+type PrincipalTeacher = {
+  id: number;
+  firstName: string;
+  lastName: string;
+  kind: string;
+};
+
+const decodeClass = (classe: any, currentTeacherId?: number): TeacherLevelsListClass => {
+  const principalTeachers: PrincipalTeacher[] = Array.isArray(classe.tabPP)
+    ? classe.tabPP.map((teacher: any): PrincipalTeacher => ({
         id: Number(teacher.id ?? 0),
         firstName: teacher.prenom ?? "",
         lastName: teacher.nom ?? "",
         kind: teacher.type ?? ""
       }))
-    : [],
-  periods: Array.isArray(classe.periodes)
-    ? classe.periodes.map(decodePeriod)
-    : []
-});
+    : [];
 
-const decodeLevel = (level: any): TeacherLevelsListLevel => ({
+  const isCurrentUserPrincipal =
+    typeof currentTeacherId === "number" &&
+    principalTeachers.some((teacher) => teacher.id === currentTeacherId);
+
+  return {
+    id: Number(classe.id ?? 0),
+    label: classe.libelle ?? "",
+    code: classe.code ?? "",
+    groupId: Number(classe.idGroupe ?? 0),
+    isPrincipalTeacher: Boolean(classe.isPP),
+    isCurrentUserPrincipal,
+    graded: Boolean(classe.estNote),
+    lsunPositioning: Number(classe.positionnementLSU ?? 0),
+    degree: Number(classe.degre ?? 0),
+    cycleId: Number(classe.idCycleEtab ?? 0),
+    periodCount: Number(classe.pcpNbPeriode ?? 0),
+    showAnnualAverage: Boolean(classe.pcpMoyAnnuelle),
+    showYearAverage: Boolean(classe.pcpMoyGenAnnee),
+    showPeriodAverage: Boolean(classe.pcpMoyPeriode),
+    showSubjectAverage: Boolean(classe.pcpMoyMatiere),
+    principalTeachers,
+    periods: Array.isArray(classe.periodes)
+      ? classe.periodes.map(decodePeriod)
+      : []
+  };
+};
+
+const decodeLevel = (level: any, currentTeacherId?: number): TeacherLevelsListLevel => ({
   id: Number(level.id ?? 0),
   code: level.code ?? "",
   label: level.libelle ?? "",
-  classes: Array.isArray(level.classes) ? level.classes.map(decodeClass) : []
+  classes: Array.isArray(level.classes)
+    ? level.classes.map((classe: any) => decodeClass(classe, currentTeacherId))
+    : []
 });
 
-const decodeSchool = (school: any): TeacherLevelsListSchool => ({
+const decodeSchool = (school: any, currentTeacherId?: number): TeacherLevelsListSchool => ({
   id: Number(school.id ?? 0),
   code: school.code ?? "",
   label: school.libelle ?? "",
@@ -101,7 +119,9 @@ const decodeSchool = (school: any): TeacherLevelsListSchool => ({
   maxGrade: Number(school.borneMax ?? 0),
   averageOutOf: Number(school.moyenneSur ?? 20),
   allowLetterGrades: Boolean(school.saisieLettre),
-  levels: Array.isArray(school.niveaux) ? school.niveaux.map(decodeLevel) : []
+  levels: Array.isArray(school.niveaux)
+    ? school.niveaux.map((level: any) => decodeLevel(level, currentTeacherId))
+    : []
 });
 
 const decodeCycleLabel = (value?: string): string => {
@@ -137,11 +157,14 @@ const decodeCycle = (cycle: any): TeacherLevelsListCycleParams => ({
   cycleNumber: Number(cycle.paramsLSU?.numeroCycle ?? 0)
 });
 
-export const decodeTeacherLevelsList = (data: any): TeacherLevelsList => ({
+export const decodeTeacherLevelsList = (
+  data: any,
+  currentTeacherId?: number
+): TeacherLevelsList => ({
   groups: Array.isArray(data?.groupes) ? data.groupes : [],
   otherGroups: Array.isArray(data?.autresGroupes) ? data.autresGroupes : [],
   schools: Array.isArray(data?.etablissements)
-    ? data.etablissements.map(decodeSchool)
+    ? data.etablissements.map((school: any) => decodeSchool(school, currentTeacherId))
     : [],
   cycles: Array.isArray(data?.cycles) ? data.cycles.map(decodeCycle) : [],
   parameters: {

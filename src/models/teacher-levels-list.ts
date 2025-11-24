@@ -41,6 +41,8 @@ export type TeacherLevelsListClass = Readonly<{
   code: string;
   groupId: number;
   isPrincipalTeacher: boolean;
+  /** True when the authenticated teacher is part of tabPP for this class. */
+  isCurrentUserPrincipal: boolean;
   graded: boolean;
   lsunPositioning: number;
   degree: number;

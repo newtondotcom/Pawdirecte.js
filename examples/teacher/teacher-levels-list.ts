@@ -7,12 +7,13 @@ void (async function main() {
   if (!credentials.teacher_username || !credentials.teacher_password)
     throw new ExampleCredentialsError("teacher");
 
-  const { session } = await loginUsingCredentials(
+  const { session, account } = await loginUsingCredentials(
     credentials.teacher_username,
     credentials.teacher_password
   );
 
-  const levels = await teacherLevelsList(session);
-  console.log(JSON.stringify(levels, null, 2));
+  const currentTeacherId = account.id;
+  const levels = await teacherLevelsList(session, currentTeacherId);
+  console.log(JSON.stringify(levels.schools[0].levels[0].classes[0].isCurrentUserPrincipal, null, 2));
 })();
 

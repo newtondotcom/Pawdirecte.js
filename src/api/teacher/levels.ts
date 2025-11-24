@@ -6,7 +6,10 @@ import {
   type TeacherLevelsList
 } from "~/models";
 
-export const teacherLevelsList = async (session: Session): Promise<TeacherLevelsList> => {
+export const teacherLevelsList = async (
+  session: Session,
+  teacherId?: number
+): Promise<TeacherLevelsList> => {
   if (!session.token) throw new SessionTokenRequired();
 
   const request = new Request("/niveauxListe.awp?verbe=get")
@@ -17,6 +20,6 @@ export const teacherLevelsList = async (session: Session): Promise<TeacherLevels
   const response = await request.send(session.fetcher);
   session.token = response.token;
 
-  return decodeTeacherLevelsList(response.data);
+  return decodeTeacherLevelsList(response.data, teacherId);
 };
 
