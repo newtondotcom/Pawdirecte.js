@@ -32,3 +32,4 @@ export * from "./timetable-item-kind";
 export * from "./workspace-item";
 export * from "./workspace-item-kind";
 export * from "./teacher-grades";
+export * from "./teacher-student-info";
