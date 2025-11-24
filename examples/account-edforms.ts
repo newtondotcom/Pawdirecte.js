@@ -1,7 +1,7 @@
-import { accountEdforms } from "../src";
-
-import { ExampleCredentialsError, credentials } from "./_credentials";
+import { accountEdforms } from "~/api";
+import { credentials, ExampleCredentialsError } from "./_credentials";
 import { loginUsingCredentials } from "./_login-using-crendentials";
+
 
 void (async function main() {
   // Check the credentials.

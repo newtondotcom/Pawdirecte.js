@@ -1,12 +1,10 @@
 import {
-  DoubleAuthRequired,
-  type Session,
   checkDoubleAuth,
   initDoubleAuth,
-  login,
-  setAccessToken
-} from "../src";
+} from "~/api/double-auth";
 import * as readline from "readline";
+import { DoubleAuthRequired, Session } from "~/models";
+import { login, setAccessToken } from "~/api/login";
 
 // This is an identifier that'll be
 // linked to the token generated, should be very secure !

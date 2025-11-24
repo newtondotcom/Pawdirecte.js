@@ -1,7 +1,6 @@
-import { refresh } from "../src";
-
-import { ExampleCredentialsError, credentials } from "./_credentials";
-import { loginUsingCredentials, uuid } from "./_login-using-crendentials";
+import { refresh } from "~/api";
+import { credentials, ExampleCredentialsError } from "./_credentials";
+import { loginUsingCredentials } from "./_login-using-crendentials";
 
 void (async function main() {
   if (!credentials.student_username || !credentials.student_password)
