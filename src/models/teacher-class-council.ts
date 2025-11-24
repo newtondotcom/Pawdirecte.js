@@ -9,7 +9,7 @@ export type TeacherClassCouncilAppreciation = Readonly<{
 export type TeacherClassCouncilMention = Readonly<{
   id: number;
   label: string;
-  line: number;
+  line?: number;
 }>;
 
 export type TeacherClassCouncilAppreciationSetting = Readonly<{
@@ -57,7 +57,7 @@ export type TeacherClassCouncilStudentInput = TeacherClassCouncilStudent & {
 
 export type TeacherClassCouncilStudentUpdatePayload = Readonly<{
   student: TeacherClassCouncilStudentInput;
-  classAppreciation?: TeacherClassCouncilAppreciation | null;
+  classAppreciation?: TeacherClassCouncilAppreciation;
 }>;
 
 export type TeacherClassCouncilStudentUpdateResult = Readonly<{

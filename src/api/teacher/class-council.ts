@@ -106,12 +106,17 @@ const serializeAppreciation = (input?: AppreciationLike) => ({
   text: encodeTextIfNeeded(input?.text ?? "")
 });
 
+const serializeMention = (input?: AppreciationLike) => ({
+  id: Number(input?.id ?? ""),
+  libelle: input?.label ?? ""
+});
+
 const serializeStudentPayload = (student: TeacherClassCouncilStudentInput) => ({
   id: student.id,
   nom: student.lastName,
   prenom: student.firstName,
   particule: student.particle ?? "",
-  photo: student.photoURL ?? "",
+  photo: student.photoURL.replace("https:", "") ?? "",
   ordreArrivee: student.arrivalOrder ?? "",
   sexe: student.gender ?? "",
   isFirst: Boolean(student.isFirst),
@@ -120,7 +125,7 @@ const serializeStudentPayload = (student: TeacherClassCouncilStudentInput) => ({
   appreciationCE: serializeAppreciation(student.appreciationHeadTeacher),
   appreciationVS: serializeAppreciation(student.appreciationVicePrincipal),
   appreciationCN: serializeAppreciation(student.appreciationNationalEducation),
-  mentionDuConseil: serializeAppreciation(student.councilMention),
+  mentionDuConseil: serializeMention(student.councilMention),
   dispositifs: student.tags ?? []
 });
 
@@ -166,6 +171,8 @@ export const updateTeacherClassCouncilStudent = async (
     .setToken(session.token)
     .setFormData(body);
 
+  console.log(payload.classAppreciation);
+  console.log(request.content);
   const response = await request.send(session.fetcher);
   session.token = response.token;
 
