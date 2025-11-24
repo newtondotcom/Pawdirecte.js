@@ -2,9 +2,17 @@ import { decodeAccountKind } from "~/decoders/account-kind";
 import type { Account } from "~/models/account";
 
 export const decodeAccount = (account: any): Account => {
+  const profile = account.profile ?? {};
+  const accountClass =
+    profile.classe && profile.classe.code && profile.classe.libelle
+      ? {
+          short: profile.classe.code,
+          long: profile.classe.libelle
+        }
+      : null;
   const gender =
-    typeof account.profile.sexe !== "undefined" && account.profile.sexe !== null
-      ? account.profile.sexe
+    typeof profile.sexe !== "undefined" && profile.sexe !== null
+      ? profile.sexe
       : account.civilite === "Mme"
         ? "F"
         : "M";
@@ -21,20 +29,17 @@ export const decodeAccount = (account: any): Account => {
     firstName: account.prenom,
     lastName: account.nom,
     email: account.email,
-    phone: account.profile.telPortable,
+    phone: profile.telPortable ?? "",
     schoolName: account.nomEtablissement,
-    schoolUAI: account.profile.rneEtablissement,
+    schoolUAI: profile.rneEtablissement ?? account.rneEtablissement ?? "",
     schoolLogoPath: account.logoEtablissement,
     schoolAgendaColor: account.couleurAgendaEtablissement,
     access_token: account.accessToken,
     socket_token: account.socketToken,
     gender,
-    profilePictureURL: account.profile.photo,
+    profilePictureURL: profile.photo ?? "",
     modules: account.modules,
     currentSchoolCycle: account.anneeScolaireCourante,
-    class: {
-      short: account.profile.classe.code,
-      long: account.profile.classe.libelle
-    }
+    class: accountClass
   };
 };

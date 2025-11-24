@@ -28,5 +28,5 @@ export type Account = Readonly<{
    * @example "2023-2024"
    */
   currentSchoolCycle: string;
-  class: { short: string; long: string };
+  class?: { short: string; long: string } | null;
 }>;
