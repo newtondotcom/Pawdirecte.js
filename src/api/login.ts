@@ -31,13 +31,11 @@ const init = async (
     }
 
     if (!gtk) {
-      throw new Error("GTK cookie not found in response");
+      console.error("GTK cookie not found in response");
     }
   }
 
   const request = new Request("/login.awp").addVersionURL().setFormData(body);
-  request.headers["X-GTK"] = gtk;
-  request.headers["Cookie"] = cookies.join("; ");
 
   if (token) request.setToken(token);
   return request;

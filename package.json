@@ -1,6 +1,6 @@
 {
   "name": "pawdirecte-teacher",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "description": "A purrfect API wrapper for EcoleDirecte for teachers.",
   "repository": "https://github.com/newtondotcom/Pawdirecte.js",
   "sideEffects": false,
