@@ -5,6 +5,8 @@ import {
 } from "@literate.ink/utilities";
 import { Response } from "./response";
 
+export const API_VERSION = "7.0.1";
+
 export class Request {
   public url: URL;
   public headers: Record<string, string>;
@@ -23,7 +25,7 @@ export class Request {
   }
 
   public addVersionURL(): Request {
-    this.url.searchParams.set("v", "7.0.1");
+    this.url.searchParams.set("v", API_VERSION);
     return this;
   }
 
