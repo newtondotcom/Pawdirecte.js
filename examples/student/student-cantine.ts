@@ -1,4 +1,4 @@
-import { studentCantine } from "~/api";
+import { studentCantine } from "@/api";
 
 import { ExampleCredentialsError, credentials } from "../_credentials";
 import { loginUsingCredentials } from "../_login-using-crendentials";

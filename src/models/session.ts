@@ -1,5 +1,5 @@
-import type { Fetcher } from "~/core/request";
-import type { DoubleAuth } from "~/models/double-auth";
+import type { Fetcher } from "@/core/request";
+import type { DoubleAuth } from "@/models/double-auth";
 
 export interface Session {
   readonly username: string;

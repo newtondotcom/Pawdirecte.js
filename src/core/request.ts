@@ -1,4 +1,4 @@
-import { Response } from "~/core/response";
+import { Response } from "@/core/response";
 
 export const API_VERSION = "7.0.1";
 

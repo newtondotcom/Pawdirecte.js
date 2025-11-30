@@ -3,7 +3,7 @@ import type {
   TeacherGradesSettings,
   TeacherLSUNEntry,
   TeacherLSUNMap
-} from "~/models";
+} from "@/models";
 
 export const decodeTeacherLSUN = (lsun: Record<string, any> | null | undefined): TeacherLSUNMap => {
   const normalized: TeacherLSUNMap = {};

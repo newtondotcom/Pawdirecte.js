@@ -1,4 +1,4 @@
-import { refresh } from "~/api";
+import { refresh } from "@/api";
 import { credentials, ExampleCredentialsError } from "./_credentials";
 import { loginUsingCredentials } from "./_login-using-crendentials";
 

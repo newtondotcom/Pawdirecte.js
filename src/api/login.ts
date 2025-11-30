@@ -6,15 +6,15 @@ import {
   InvalidVersion,
   type Session,
   SessionTokenRequired
-} from "~/models";
+} from "@/models";
 
-import { Request } from "~/core/request";
-import { decodeAccount } from "~/decoders/account";
-import { encodeDoubleAuth } from "~/encoders/double-auth";
+import { Request } from "@/core/request";
+import { decodeAccount } from "@/decoders/account";
+import { encodeDoubleAuth } from "@/encoders/double-auth";
 import { splitSetCookieString, parse } from "cookie-es";
 
-import type { FetcherResponse } from "~/core/request";
-import { getHeaderFromResponse } from "~/core/request";
+import type { FetcherResponse } from "@/core/request";
+import { getHeaderFromResponse } from "@/core/request";
 
 export function getCookiesFromResponse(response: FetcherResponse): string[] {
   // Retrieve all Set-Cookie headers (may contain multiple headers with the same key)

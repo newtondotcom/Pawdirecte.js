@@ -1,4 +1,4 @@
-import type { TeacherStudentInfo } from "~/models";
+import type { TeacherStudentInfo } from "@/models";
 
 export const decodeTeacherStudentInfo = (data: Record<string, any>): TeacherStudentInfo => {
   return {

@@ -1,10 +1,10 @@
 import { Buffer } from "node:buffer";
-import { Request } from "~/core/request";
+import { Request } from "@/core/request";
 import {
   decodeTeacherClassCouncil,
   decodeTeacherClassCouncilAppreciation
-} from "~/decoders/teacher-class-council";
-import { decodeTeacherPredefinedAppreciations } from "~/decoders/teacher-predefined-appreciation";
+} from "@/decoders/teacher-class-council";
+import { decodeTeacherPredefinedAppreciations } from "@/decoders/teacher-predefined-appreciation";
 import {
   SessionTokenRequired,
   type Session,
@@ -14,7 +14,7 @@ import {
   type TeacherClassCouncilStudentUpdatePayload,
   type TeacherClassCouncilStudentUpdateResult,
   type TeacherPredefinedAppreciations
-} from "~/models";
+} from "@/models";
 
 export const teacherClassCouncil = async (
   session: Session,

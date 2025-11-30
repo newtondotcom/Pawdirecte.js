@@ -4,7 +4,7 @@ import type {
   PeriodSubjectPerformance,
   PeriodSubjectsSummary,
   PeriodWithSubjects
-} from "~/models";
+} from "@/models";
 
 const toDate = (value: string | undefined | null): Date | undefined => {
   if (!value || String(value).trim() === "") return undefined;

@@ -1,10 +1,10 @@
-import { Request } from "~/core/request";
-import { decodeTeacherLevelsList } from "~/decoders/teacher-levels-list";
+import { Request } from "@/core/request";
+import { decodeTeacherLevelsList } from "@/decoders/teacher-levels-list";
 import {
   SessionTokenRequired,
   type Session,
   type TeacherLevelsList
-} from "~/models";
+} from "@/models";
 
 export const teacherLevelsList = async (
   session: Session,

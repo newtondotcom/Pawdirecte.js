@@ -1,6 +1,6 @@
-import type { FetcherResponse } from "~/core/request";
-import { Request } from "~/core/request";
-import { FileKind, type Session, SessionTokenRequired } from "~/models";
+import type { FetcherResponse } from "@/core/request";
+import { Request } from "@/core/request";
+import { FileKind, type Session, SessionTokenRequired } from "@/models";
 
 export const buildPawdirecteFileDownloadUrl = (
   type: FileKind,

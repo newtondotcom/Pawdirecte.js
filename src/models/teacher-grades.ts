@@ -1,6 +1,6 @@
-import type { Grade } from "~/models/grade";
-import type { GradesOverview } from "~/models/grades-overview";
-import type { PeriodWithSubjects } from "~/models/period";
+import type { Grade } from "@/models/grade";
+import type { GradesOverview } from "@/models/grades-overview";
+import type { PeriodWithSubjects } from "@/models/period";
 
 export type TeacherLSUNEntry = Readonly<{
   subjectCode: string;

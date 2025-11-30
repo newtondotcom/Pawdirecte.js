@@ -1,4 +1,4 @@
-import { teacherStudentInfo } from "~/api";
+import { teacherStudentInfo } from "@/api";
 
 import { ExampleCredentialsError, credentials } from "../_credentials";
 import { loginUsingCredentials } from "../_login-using-crendentials";

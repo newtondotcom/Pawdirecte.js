@@ -1,16 +1,16 @@
-import { Request } from "~/core/request";
-import { decodeGrade } from "~/decoders/grade";
-import { buildOverview } from "~/decoders/grades-overview";
-import { decodePeriodWithSubjects } from "~/decoders/period";
+import { Request } from "@/core/request";
+import { decodeGrade } from "@/decoders/grade";
+import { buildOverview } from "@/decoders/grades-overview";
+import { decodePeriodWithSubjects } from "@/decoders/period";
 import {
   decodeTeacherLSUN,
   decodeTeacherGradesSettings
-} from "~/decoders/teacher-grades";
+} from "@/decoders/teacher-grades";
 import {
   type Session,
   SessionTokenRequired,
   type TeacherGradesResponse
-} from "~/models";
+} from "@/models";
 
 export const teacherGrades = async (
   session: Session,

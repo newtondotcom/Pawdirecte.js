@@ -1,5 +1,5 @@
 import { decode as decodeBase64 } from "js-base64";
-import type { TeacherPredefinedAppreciations } from "~/models";
+import type { TeacherPredefinedAppreciations } from "@/models";
 
 export const decodeTeacherPredefinedAppreciations = (
   data: any

@@ -7,7 +7,7 @@ import type {
   TeacherLevelsListPeriod,
   TeacherLevelsListSchool,
   TeacherLevelsListSubject
-} from "~/models";
+} from "@/models";
 
 const toDate = (value: string | undefined): Date | null => {
   if (!value || value.trim() === "") return null;

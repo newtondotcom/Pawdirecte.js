@@ -1,6 +1,6 @@
-import { Request } from "~/core/request";
-import { decodeTeacherStudentInfo } from "~/decoders/teacher-student-info";
-import { SessionTokenRequired, type Session, type TeacherStudentInfo } from "~/models";
+import { Request } from "@/core/request";
+import { decodeTeacherStudentInfo } from "@/decoders/teacher-student-info";
+import { SessionTokenRequired, type Session, type TeacherStudentInfo } from "@/models";
 
 export const teacherStudentInfo = async (
   session: Session,

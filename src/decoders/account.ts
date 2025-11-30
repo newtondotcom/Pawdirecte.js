@@ -1,5 +1,5 @@
-import { decodeAccountKind } from "~/decoders/account-kind";
-import type { Account } from "~/models/account";
+import { decodeAccountKind } from "@/decoders/account-kind";
+import type { Account } from "@/models/account";
 
 export const decodeAccount = (account: any): Account => {
   const profile = account.profile ?? {};

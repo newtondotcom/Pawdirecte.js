@@ -5,7 +5,7 @@ import type {
   TeacherClassCouncilMention,
   TeacherClassCouncilSettings,
   TeacherClassCouncilStudent
-} from "~/models";
+} from "@/models";
 
 export const decodeTeacherClassCouncilAppreciation = (
   input: any

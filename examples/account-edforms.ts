@@ -1,4 +1,4 @@
-import { accountEdforms } from "~/api";
+import { accountEdforms } from "@/api";
 import { credentials, ExampleCredentialsError } from "./_credentials";
 import { loginUsingCredentials } from "./_login-using-crendentials";
 
