@@ -34,6 +34,8 @@ async function main() {
         text: `Updated via example on ${new Date().toISOString()}`,
         date: new Date()
       },
+      isFirst: true,
+      isLast: true
     },
     classAppreciation: {
       ...council.classAppreciation,

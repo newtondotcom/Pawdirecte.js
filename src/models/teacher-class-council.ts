@@ -52,7 +52,10 @@ export type TeacherClassCouncil = Readonly<{
   classAppreciation: TeacherClassCouncilAppreciation;
 }>;
 
-export type TeacherClassCouncilStudentInput = TeacherClassCouncilStudent;
+export type TeacherClassCouncilStudentInput = TeacherClassCouncilStudent & {
+  isFirst: boolean;
+  isLast: boolean;
+};
 
 export type TeacherClassCouncilStudentUpdatePayload = Readonly<{
   student: TeacherClassCouncilStudentInput;
