@@ -171,11 +171,11 @@ export const updateTeacherClassCouncilStudent = async (
     .setToken(session.token)
     .setFormData(body);
 
-  console.log(payload.classAppreciation);
-  console.log(request.content);
   const response = await request.send(session.fetcher);
   session.token = response.token;
+  if (response.data.status !== 200) {
+    throw new Error(`Failed to update class council student: ${response.data.message}`);
+  }
 
   return decodeUpdateResponse(response.data);
 };
-

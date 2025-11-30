@@ -51,8 +51,8 @@ export type TeacherClassCouncil = Readonly<{
 }>;
 
 export type TeacherClassCouncilStudentInput = TeacherClassCouncilStudent & {
-  isFirst?: boolean;
-  isLast?: boolean;
+  isFirst: boolean;
+  isLast: boolean;
 };
 
 export type TeacherClassCouncilStudentUpdatePayload = Readonly<{
