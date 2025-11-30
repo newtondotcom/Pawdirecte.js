@@ -1,4 +1,4 @@
-import type { Fetcher } from "@literate.ink/utilities";
+import type { Fetcher } from "~/core/request";
 import type { DoubleAuth } from "~/models/double-auth";
 
 export interface Session {

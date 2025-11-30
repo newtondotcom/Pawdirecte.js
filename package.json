@@ -49,7 +49,7 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "@literate.ink/utilities": "1.0.0-11713907881.1",
+    "cookie-es": "^2.0.0",
     "js-base64": "^3.7.8"
   }
 }

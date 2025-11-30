@@ -13,14 +13,22 @@ import { decodeAccount } from "~/decoders/account";
 import { encodeDoubleAuth } from "~/encoders/double-auth";
 import { splitSetCookieString, parse } from "cookie-es";
 
-export function getCookiesFromResponse(response: Response): string[] {
-  // Retrieve the raw Set-Cookie header (may contain several cookies)
-  const raw = response.headers.get("set-cookie");
-  if (!raw) return [];
+import type { FetcherResponse } from "~/core/request";
+import { getHeaderFromResponse } from "~/core/request";
 
-  // Split into individual Set-Cookie entries
-  const cookies = splitSetCookieString(raw);
-  return cookies;
+export function getCookiesFromResponse(response: FetcherResponse): string[] {
+  // Retrieve all Set-Cookie headers (may contain multiple headers with the same key)
+  const setCookieHeaders = getHeaderFromResponse(response, "set-cookie");
+  if (setCookieHeaders.length === 0) return [];
+
+  // Each header value may contain multiple cookies separated by commas
+  // Split each header into individual Set-Cookie entries and flatten
+  const allCookies: string[] = [];
+  for (const raw of setCookieHeaders) {
+    const cookies = splitSetCookieString(raw);
+    allCookies.push(...cookies);
+  }
+  return allCookies;
 }
 
 const init = async (

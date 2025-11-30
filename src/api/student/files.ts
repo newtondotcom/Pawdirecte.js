@@ -1,4 +1,4 @@
-import type { Response } from "@literate.ink/utilities";
+import type { FetcherResponse } from "~/core/request";
 import { Request } from "~/core/request";
 import { FileKind, type Session, SessionTokenRequired } from "~/models";
 
@@ -32,7 +32,7 @@ export const getFile = async (
   type: FileKind,
   id: number | string,
   year = ""
-): Promise<Response> => {
+): Promise<FetcherResponse> => {
   if (!session.token) throw new SessionTokenRequired();
 
   const url = buildPawdirecteFileDownloadUrl(type, id, year);

@@ -1,7 +1,5 @@
-import {
-  type Response as UnsafeResponse,
-  getHeaderFromResponse
-} from "@literate.ink/utilities";
+import type { FetcherResponse } from "./request";
+import { getFirstHeaderFromResponse } from "./request";
 
 const validJson = (value: string) => {
   return (
@@ -17,29 +15,35 @@ export class Response {
   public message: string | null = null;
   public data: any;
 
-  public constructor(response: UnsafeResponse) {
-    this.token = getHeaderFromResponse(response, "x-token");
+  public constructor(response: FetcherResponse) {
+    // Get content from response.content if available, otherwise decode from bytes
+    const content = response.content ?? 
+      (response.bytes instanceof ArrayBuffer
+        ? new TextDecoder().decode(new Uint8Array(response.bytes))
+        : new TextDecoder().decode(response.bytes));
 
-    const content_type = getHeaderFromResponse(response, "content-type");
+    this.token = getFirstHeaderFromResponse(response, "x-token");
+
+    const content_type = getFirstHeaderFromResponse(response, "content-type");
     // Set error if response is not JSON and don't starts like JSON. ED sometimes return JSON in a text/html Content-Type (yes....)
     if (
       !content_type?.startsWith("application/json") &&
-      !validJson(response.content)
+      !validJson(content)
     ) {
       this.status = Number.parseInt(
-        getHeaderFromResponse(response, "x-code")!,
+        getFirstHeaderFromResponse(response, "x-code")!,
         10
       );
     }
     else {
-      const content = JSON.parse(response.content);
+      const parsedContent = JSON.parse(content);
 
-      this.status = content.code;
-      this.data = content.data;
-      this.message = content.message;
+      this.status = parsedContent.code;
+      this.data = parsedContent.data;
+      this.message = parsedContent.message;
 
-      if ("token" in content) {
-        this.token = content.token;
+      if ("token" in parsedContent) {
+        this.token = parsedContent.token;
       }
     }
   }
