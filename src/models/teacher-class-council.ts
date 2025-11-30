@@ -27,6 +27,8 @@ export type TeacherClassCouncilStudent = Readonly<{
   gender: "M" | "F";
   arrivalOrder: string;
   photoURL: string;
+  isFirst: boolean;
+  isLast: boolean;
   tags: Array<Record<string, unknown>>;
   appreciationPrincipalTeacher: TeacherClassCouncilAppreciation;
   appreciationHeadTeacher: TeacherClassCouncilAppreciation;
@@ -50,10 +52,7 @@ export type TeacherClassCouncil = Readonly<{
   classAppreciation: TeacherClassCouncilAppreciation;
 }>;
 
-export type TeacherClassCouncilStudentInput = TeacherClassCouncilStudent & {
-  isFirst?: boolean;
-  isLast?: boolean;
-};
+export type TeacherClassCouncilStudentInput = TeacherClassCouncilStudent;
 
 export type TeacherClassCouncilStudentUpdatePayload = Readonly<{
   student: TeacherClassCouncilStudentInput;

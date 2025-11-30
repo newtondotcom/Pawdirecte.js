@@ -17,7 +17,9 @@ export const decodeTeacherStudentInfo = (data: Record<string, any>): TeacherStud
     classLabel: data.classeLibelle ?? "",
     classIsGraded: Boolean(data.classeEstNote),
     schoolId: Number(data.idEtablissement ?? 0),
-    tags: Array.isArray(data.dispositifs) ? data.dispositifs : []
+    tags: Array.isArray(data.dispositifs) ? data.dispositifs : [],
+    isFirst: Boolean(data.isFirst),
+    isLast: Boolean(data.isLast)
   };
 };
 

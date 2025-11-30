@@ -15,5 +15,7 @@ export type TeacherStudentInfo = Readonly<{
   classIsGraded: boolean;
   schoolId: number;
   tags: Array<string | Record<string, unknown>>;
+  isFirst: boolean;
+  isLast: boolean;
 }>;
 
