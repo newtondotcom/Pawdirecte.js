@@ -11,7 +11,17 @@ import {
 import { Request } from "~/core/request";
 import { decodeAccount } from "~/decoders/account";
 import { encodeDoubleAuth } from "~/encoders/double-auth";
-import { getCookiesFromResponse } from "@literate.ink/utilities";
+import { splitSetCookieString, parse } from "cookie-es";
+
+export function getCookiesFromResponse(response: Response): string[] {
+  // Retrieve the raw Set-Cookie header (may contain several cookies)
+  const raw = response.headers.get("set-cookie");
+  if (!raw) return [];
+
+  // Split into individual Set-Cookie entries
+  const cookies = splitSetCookieString(raw);
+  return cookies;
+}
 
 const init = async (
   body: Record<string, unknown>,
@@ -25,10 +35,11 @@ const init = async (
     const response = await request.sendRaw();
     cookies = getCookiesFromResponse(response);
 
-    for (const cookie of cookies) {
-      const [key, value] = cookie.split("=");
-      if (key === "GTK") gtk = value;
-    }
+    cookies.forEach(cookie => {
+      const parsed = parse(cookie);
+      if (parsed["GTK"]) gtk = parsed["GTK"];
+    });
+
   }
 
   const request = new Request("/login.awp").addVersionURL().setFormData(body);
