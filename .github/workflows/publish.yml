@@ -2,8 +2,8 @@ name: Publish on NPM
 
 on:
   push:
-    tags:
-      - 'js-v*.*.*'
+    paths:
+      - 'package.json'
   workflow_dispatch:
 
 
