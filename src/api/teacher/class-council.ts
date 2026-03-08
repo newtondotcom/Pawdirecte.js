@@ -173,7 +173,7 @@ export const updateTeacherClassCouncilStudent = async (
 
   const response = await request.send(session.fetcher);
   session.token = response.token;
-  if (response.data.status !== 200) {
+  if (response.status !== 200) {
     throw new Error(`Failed to update class council student: ${response.data.message}`);
   }
 
